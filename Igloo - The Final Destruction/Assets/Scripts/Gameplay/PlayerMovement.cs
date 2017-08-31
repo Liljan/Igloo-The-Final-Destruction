@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
     public float speed = 1.0f;
 
     private Rigidbody2D rb2d;
@@ -55,21 +54,6 @@ public class PlayerMovement : MonoBehaviour
         animator.SetBool("Run", Mathf.Abs(x) > 0.1f);
     }
 
-    private void Jump()
-    {
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, 0.1f, groundLayer);
-        if (isGrounded)
-            currentJumps = 0;
-
-        animator.SetBool("Grounded", isGrounded);
-
-        if (Input.GetButtonDown("Jump") && currentJumps < MAX_JUMPS - 1)
-        {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpVelocity);
-            currentJumps++;
-        }
-    }
-
     private void SetFacingDirection(float xAxis)
     {
         if (xAxis <= -0.1f)
@@ -80,6 +64,39 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
+    }
+
+    private void Jump()
+    {
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, 0.1f, groundLayer);
+        if (isGrounded)
+        {
+            currentJumps = 0;
+            currentJumpHoldTimer = 0.0f;
+        }
+
+        animator.SetBool("Grounded", isGrounded);
+
+        /*if (Input.GetButtonDown("Jump") && currentJumps < MAX_JUMPS - 1)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpVelocity);
+            currentJumps++;
+        }*/
+
+        if(Input.GetButtonDown("Jump") && currentJumps < MAX_JUMPS)
+        {
+            currentJumps++;
+        }
+
+        if (Input.GetButton("Jump") && currentJumps < MAX_JUMPS)
+        {
+            if (currentJumpHoldTimer < JUMP_HOLD_TIME)
+            {
+                rb2d.velocity = new Vector2(rb2d.velocity.x, jumpVelocity);
+                currentJumpHoldTimer += Time.deltaTime;
+            }
+        }
+
     }
 
 }
