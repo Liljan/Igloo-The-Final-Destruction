@@ -10,10 +10,8 @@ public abstract class Health : MonoBehaviour
 
     public GameObject DeathParticles;
 
-    void OnGUI()
-    {
-        GUI.Label(new Rect(transform.position.x, transform.position.y + 1.0f, 100, 20), currentHP + " / " + MAX_HP);
-    }
+    // For debug text
+    protected Camera camera;
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
@@ -28,11 +26,7 @@ public abstract class Health : MonoBehaviour
             Kill();
     }
 
-    public void Kill()
-    {
-        Instantiate(DeathParticles, transform.position, Quaternion.identity);
-        Destroy(this);
-    }
+    public abstract void Kill();
 
     public abstract void HandleCollisions(Collision2D other);
 }
