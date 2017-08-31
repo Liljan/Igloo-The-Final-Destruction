@@ -77,12 +77,6 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("Grounded", isGrounded);
 
-        /*if (Input.GetButtonDown("Jump") && currentJumps < MAX_JUMPS - 1)
-        {
-            rb2d.velocity = new Vector2(rb2d.velocity.x, jumpVelocity);
-            currentJumps++;
-        }*/
-
         if(Input.GetButtonDown("Jump") && currentJumps < MAX_JUMPS)
         {
             currentJumps++;
@@ -96,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
                 currentJumpHoldTimer += Time.deltaTime;
             }
         }
-
     }
 
 }
