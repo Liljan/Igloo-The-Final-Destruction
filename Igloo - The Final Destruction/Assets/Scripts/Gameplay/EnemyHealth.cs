@@ -52,5 +52,4 @@ public class EnemyHealth : Health
         Vector3 screenCoords = camera.WorldToScreenPoint(new Vector3(transform.position.x, -transform.position.y - 1.0f, 1.0f));
         GUI.Label(new Rect(screenCoords.x, screenCoords.y, 100, 20), currentHP + " / " + MAX_HP);
     }
-
 }
