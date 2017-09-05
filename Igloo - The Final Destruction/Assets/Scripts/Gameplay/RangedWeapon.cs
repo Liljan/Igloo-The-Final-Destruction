@@ -74,6 +74,8 @@ public abstract class RangedWeapon : MonoBehaviour
 
             bullet.SetSpeed(speed);
             bullet.SetDamage(damage);
+
+
         }
     }
 }

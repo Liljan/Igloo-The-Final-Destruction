@@ -30,4 +30,22 @@ public class Bullet : MonoBehaviour
     {
         damage = d;
     }
+
+    public int GetDamage() { return damage; }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag.Equals("Player") || other.tag.Equals("PlayerBullet"))
+        {
+            return;
+        }
+
+        if (other.tag.Equals("Enemy"))
+        {
+            EnemyHealth enemy = other.GetComponent<EnemyHealth>();
+            enemy.TakeDamage(damage);
+        }
+
+        Destroy(this.gameObject);
+    }
 }
