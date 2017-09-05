@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ArmAim : MonoBehaviour
 {
+    public Transform parentTransform;
+
     // Update is called once per frame
     void Update()
     {

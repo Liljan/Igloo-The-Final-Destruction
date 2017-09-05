@@ -44,7 +44,7 @@ public class EnemyHealth : Health
 
         isDead = true;
         animator.SetBool("Dead", true);
-        Destroy(this.gameObject, 2.0f);
+        Destroy(this.gameObject, 10.0f);
     }
 
     public void OnGUI()
