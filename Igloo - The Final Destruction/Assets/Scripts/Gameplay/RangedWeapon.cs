@@ -66,7 +66,6 @@ public abstract class RangedWeapon : MonoBehaviour
         //Quaternion rotation = transform.rotation * Quaternion.Euler(0F, 0F, recoil);
         //recoil += recoilFactor;
 
-
         for (int i = 0; i < firePoints.Length; i++)
         {
             GameObject go = Instantiate(Bullet, firePoints[i].position, firePoints[i].rotation * Quaternion.Euler(0F, 0F, root.localScale.x < 0F ? 180F : 0F));
@@ -74,8 +73,6 @@ public abstract class RangedWeapon : MonoBehaviour
 
             bullet.SetSpeed(speed);
             bullet.SetDamage(damage);
-
-
         }
     }
 }
