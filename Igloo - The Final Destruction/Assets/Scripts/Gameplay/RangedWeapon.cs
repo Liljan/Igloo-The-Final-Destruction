@@ -23,10 +23,12 @@ public abstract class RangedWeapon : MonoBehaviour
 
     [Header("Reload")]
     //private FillBar reloadBar;
+    public GameObject UI_RELOAD_HINT;
+    public FillBar UI_RELOAD_BAR;
     protected bool isReloading = false;
 
     public float RELOAD_TIME = 0.5f;
-    protected float currentReloadTime;
+    protected float currentReloadTime = 0.0f;
 
     // Shell casings
     [Header("Shell casings")]
@@ -49,17 +51,70 @@ public abstract class RangedWeapon : MonoBehaviour
     {
         root = transform.parent.GetComponentInParent<ArmAim>().parentTransform;
         Initialize();
+
+        UI_RELOAD_HINT.SetActive(false);
+        UI_RELOAD_BAR.SetEnabled(false);
     }
 
     public abstract void Initialize();
 
     public void Update()
     {
-        PollShoot();
+        if (isReloading)
+        {
+            currentReloadTime += Time.deltaTime;
+            UI_RELOAD_BAR.SetValue(currentReloadTime / RELOAD_TIME);
+        }
+
+        if (!isReloading)
+        {
+            PollShoot();
+            PollReload();
+        }
     }
 
     // Update is called once per frame
     public abstract void PollShoot();
+
+    public void PollReload()
+    {
+        if (ammoInClip == clipSize)
+            return;
+
+        if (ammo == 0)
+            return;
+
+        if (Input.GetButtonDown("Reload"))
+        {
+            StartCoroutine(Reload());
+        }
+    }
+
+    public IEnumerator Reload()
+    {
+        isReloading = true;
+        UI_RELOAD_BAR.SetEnabled(true);
+        UI_RELOAD_BAR.SetValue(0.0f);
+
+        yield return new WaitForSeconds(RELOAD_TIME);
+        isReloading = false;
+        UI_RELOAD_BAR.SetEnabled(false);
+        currentReloadTime = 0.0f;
+
+        // Transfering ammo to mag
+        ammo += ammoInClip;
+
+        if (ammo >= clipSize)
+        {
+            ammo -= clipSize;
+            ammoInClip = clipSize;
+        }
+        else
+        {
+            ammoInClip = ammo;
+            ammo = 0;
+        }
+    }
 
     protected void SpawnShot()
     {
