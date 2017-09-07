@@ -34,6 +34,11 @@ public abstract class RangedWeapon : MonoBehaviour
     [Header("Shell casings")]
     public bool shouldDropShells = true;
     public GameObject SHELL;
+    public Transform shellSpawnPoint;
+
+    // Muzzle flash
+    public GameObject MuzzleFlash;
+    private SpriteRenderer muzzleFlashRenderer;
 
     // SOUND EFFECTS
     /* [Header("Sound Effects")]
@@ -44,6 +49,7 @@ public abstract class RangedWeapon : MonoBehaviour
     protected void Awake()
     {
         //audioSource = GetComponent<AudioSource>();  
+        muzzleFlashRenderer = MuzzleFlash.GetComponent<SpriteRenderer>();
     }
 
     // Use this for initialization
@@ -54,6 +60,8 @@ public abstract class RangedWeapon : MonoBehaviour
 
         UI_RELOAD_HINT.SetActive(false);
         UI_RELOAD_BAR.SetEnabled(false);
+
+        MuzzleFlash.SetActive(false);
     }
 
     public abstract void Initialize();
@@ -129,5 +137,28 @@ public abstract class RangedWeapon : MonoBehaviour
             bullet.SetSpeed(speed);
             bullet.SetDamage(damage);
         }
+
+        if (shouldDropShells)
+        {
+            GameObject obj = Instantiate(SHELL, shellSpawnPoint.position, shellSpawnPoint.rotation);
+            float localRotation = transform.rotation.eulerAngles.z;
+        }
+
+        StartCoroutine(ShowMuzzleFlash(0.1f));
+
+        //obj.GetComponent<Rigidbody2D>().velocity = ;
+    }
+
+    public IEnumerator ShowMuzzleFlash(float time)
+    {
+        MuzzleFlash.SetActive(true);
+        float x = Random.Range(0.95f, 1.05f);
+        float y = Random.Range(0.95f, 1.05f);
+        MuzzleFlash.transform.localScale = new Vector3(x, y, 1.0f);
+        muzzleFlashRenderer.flipY = Random.value > 0.5f;
+
+        yield return new WaitForSeconds(time);
+
+        MuzzleFlash.SetActive(false);
     }
 }
