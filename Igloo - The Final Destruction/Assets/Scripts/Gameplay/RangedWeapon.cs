@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class RangedWeapon : MonoBehaviour
 {
-    protected Transform root;
+    public Transform root;
 
     public Transform[] firePoints;
     public GameObject Bullet;
@@ -55,7 +55,7 @@ public abstract class RangedWeapon : MonoBehaviour
     // Use this for initialization
     public void Start()
     {
-        root = transform.parent.GetComponentInParent<ArmAim>().parentTransform;
+        //root = transform.parent.GetComponentInParent<ArmAim>().parentTransform;
         Initialize();
 
         UI_RELOAD_HINT.SetActive(false);
@@ -144,7 +144,7 @@ public abstract class RangedWeapon : MonoBehaviour
             float localRotation = transform.rotation.eulerAngles.z;
         }
 
-        StartCoroutine(ShowMuzzleFlash(0.1f));
+        StartCoroutine(ShowMuzzleFlash(0.05f));
 
         //obj.GetComponent<Rigidbody2D>().velocity = ;
     }

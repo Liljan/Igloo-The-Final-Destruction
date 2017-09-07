@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class WeaponSystem : MonoBehaviour
 {
-
-    public List<GameObject> startingWeapons;
-    private List<GameObject> weapons;
+    public GameObject[] weapons;
 
     private int activeWeapon = 0;
     private bool dpadIsPressedDown = false;
 
     private void Awake()
     {
-        weapons = new List<GameObject>();
     }
 
     // Use this for initialization
     void Start()
     {
-
-        for (int i = 0; i < startingWeapons.Count; i++)
+        for (int i = 0; i < weapons.Length; i++)
         {
-            GameObject go = Instantiate(startingWeapons[i], transform.position, transform.rotation, this.transform);
-            go.SetActive(false);
-            weapons.Add(go);
+            //GameObject go = Instantiate(startingWeapons[i], transform.position, transform.rotation, this.transform);
+            weapons[i].SetActive(false);
         }
+
         weapons[0].SetActive(true);
     }
 
@@ -37,7 +33,7 @@ public class WeaponSystem : MonoBehaviour
 
     private void HandleWeaponChange()
     {
-        float dpadX = Input.GetAxis("TOGGLE_WEAPON_X");
+        float dpadX = Input.GetAxis("Toggle_Weapon_X");
 
         if (dpadX == 0.0f)
         {
@@ -60,7 +56,7 @@ public class WeaponSystem : MonoBehaviour
     {
         weapons[activeWeapon].SetActive(false);
 
-        if (activeWeapon < weapons.Count - 1)
+        if (activeWeapon < weapons.Length - 1)
         {
             activeWeapon++;
         }
@@ -82,7 +78,7 @@ public class WeaponSystem : MonoBehaviour
         }
         else
         {
-            activeWeapon = weapons.Count - 1;
+            activeWeapon = weapons.Length - 1;
         }
 
         weapons[activeWeapon].SetActive(true);
