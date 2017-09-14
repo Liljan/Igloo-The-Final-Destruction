@@ -34,7 +34,6 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Not visible");
         if (isFalling)
             Destroy(this.gameObject);
     }
