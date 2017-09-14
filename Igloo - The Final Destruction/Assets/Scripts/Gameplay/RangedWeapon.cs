@@ -64,6 +64,15 @@ public abstract class RangedWeapon : MonoBehaviour
         MuzzleFlash.SetActive(false);
     }
 
+    public void OnDisable()
+    {
+        UI_RELOAD_HINT.SetActive(false);
+        UI_RELOAD_BAR.SetEnabled(false);
+
+        isReloading = false;
+        currentReloadTime = 0.0f;
+    }
+
     public abstract void Initialize();
 
     public void Update()
