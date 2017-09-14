@@ -46,7 +46,6 @@ public class CameraFollowBox : MonoBehaviour
     private bool IsOutsideOfXMargin()
     {
         // Returns true if the distance between the camera and the player in the x axis is greater than the x margin.
-        Debug.Log(Mathf.Abs(transform.position.x - player.position.x));
         return Mathf.Abs(transform.position.x - player.position.x) > margin.x;
     }
 
@@ -62,6 +61,8 @@ public class CameraFollowBox : MonoBehaviour
             return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(transform.position, new Vector3(2F * margin.x, 2F * margin.y, 1F));
+        Vector3 pos = transform.position + new Vector3(offset.x, offset.y, 0F);
+
+        Gizmos.DrawWireCube(pos, new Vector3(2F * margin.x, 2F * margin.y, 1F));
     }
 }
