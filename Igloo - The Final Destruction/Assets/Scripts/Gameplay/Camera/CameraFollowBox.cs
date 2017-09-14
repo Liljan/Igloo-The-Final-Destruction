@@ -10,15 +10,13 @@ public class CameraFollowBox : MonoBehaviour
     //public Vector2 minXY;        // The minimum x and y coordinates the camera can have.
     public Vector2 offset;
 
-    private Camera cam;
-
     // public Vector2 offset;
 
     public Transform player;        // Reference to the player's transform.
 
     private void Awake()
     {
-        cam = GetComponent<Camera>();
+
     }
 
     // Update is called once per frame
@@ -52,7 +50,7 @@ public class CameraFollowBox : MonoBehaviour
     private bool isOutsideOfYMargin()
     {
         // Returns true if the distance between the camera and the player in the y axis is greater than the y margin.
-        return Mathf.Abs(transform.position.y - player.position.y) > margin.y;
+        return Mathf.Abs(transform.position.y - player.position.y + offset.y) > margin.y;
     }
 
     private void OnDrawGizmos()
