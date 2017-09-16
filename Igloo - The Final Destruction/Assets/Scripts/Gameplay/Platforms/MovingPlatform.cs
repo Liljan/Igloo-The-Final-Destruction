@@ -39,8 +39,6 @@ public class MovingPlatform : MonoBehaviour
     {
         string tag = collision.gameObject.tag;
 
-        Debug.Log("Hello");
-
         if (tag == "Player" || tag == "Enemy")
         {
             collision.gameObject.transform.parent = transform;
@@ -50,8 +48,6 @@ public class MovingPlatform : MonoBehaviour
     public void OnCollisionExit2D(Collision2D collision)
     {
         string tag = collision.gameObject.tag;
-
-        Debug.Log("Bye");
 
         if (tag == "Player" || tag == "Enemy")
         {

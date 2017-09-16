@@ -27,7 +27,7 @@ public class EnemyHealth : Health
         if (tag.Equals("Player"))
         {
             TakeDamage(10);
-        }			
+        }
     }
 
     public override void Kill()
@@ -44,11 +44,11 @@ public class EnemyHealth : Health
         animator.SetBool("Dead", true);
     }
 
-    private void OnBecameInvisible()
+    /*private void OnBecameInvisible()
     {
         if (!isDead)
             return;
 
         Destroy(gameObject);
-    }
+    }*/
 }
