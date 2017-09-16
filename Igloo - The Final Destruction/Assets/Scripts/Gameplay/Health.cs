@@ -10,9 +10,6 @@ public abstract class Health : MonoBehaviour
 
     public GameObject DeathParticles;
 
-    // For debug text
-    protected Camera camera;
-
     public void OnCollisionEnter2D(Collision2D collision)
     {
         HandleCollisions(collision);

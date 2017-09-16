@@ -19,6 +19,8 @@ public class Bullet : MonoBehaviour
     {
         float angle = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
         rb2d.velocity = new Vector2(speed * Mathf.Cos(angle), speed * Mathf.Sin(angle));
+
+        Debug.Log("Created");
     }
 
     public void SetSpeed(float s)
@@ -33,19 +35,26 @@ public class Bullet : MonoBehaviour
 
     public int GetDamage() { return damage; }
 
-    public void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        /*
         if (other.tag.Equals("Player") || other.tag.Equals("PlayerBullet"))
         {
             return;
         }
+        */
 
         if (other.tag.Equals("Enemy"))
         {
             EnemyHealth enemy = other.GetComponent<EnemyHealth>();
             enemy.TakeDamage(damage);
+            Destroy(this.gameObject);
         }
 
+    }
+
+    private void OnBecameInvisible()
+    {
         Destroy(this.gameObject);
     }
 }

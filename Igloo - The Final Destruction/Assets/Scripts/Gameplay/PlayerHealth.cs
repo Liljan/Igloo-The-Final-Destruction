@@ -9,8 +9,6 @@ public class PlayerHealth : Health
 
     public void Awake()
     {
-        camera = GameObject.FindObjectOfType<Camera>();
-
         currentHP = MAX_HP;
     }
 
@@ -28,11 +26,5 @@ public class PlayerHealth : Health
     {
         Instantiate(DeathParticles, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
-    }
-
-    public void OnGUI()
-    {
-        Vector3 screenCoords = camera.WorldToScreenPoint(new Vector3(transform.position.x, -transform.position.y - 1.0f, 1.0f));
-        GUI.Label(new Rect(screenCoords.x, screenCoords.y, 100, 20), currentHP + " / " + MAX_HP);
     }
 }

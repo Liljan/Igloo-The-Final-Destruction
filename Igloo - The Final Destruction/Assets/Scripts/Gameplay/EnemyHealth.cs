@@ -17,8 +17,6 @@ public class EnemyHealth : Health
         spriteRenderer = GetComponent<SpriteRenderer>();
         collider2d = GetComponent<Collider2D>();
 
-        camera = GameObject.FindObjectOfType<Camera>();
-
         currentHP = MAX_HP;
     }
 
@@ -29,7 +27,7 @@ public class EnemyHealth : Health
         if (tag.Equals("Player"))
         {
             TakeDamage(10);
-        }
+        }			
     }
 
     public override void Kill()
@@ -44,12 +42,13 @@ public class EnemyHealth : Health
 
         isDead = true;
         animator.SetBool("Dead", true);
-        Destroy(this.gameObject, 10.0f);
     }
 
-    public void OnGUI()
+    private void OnBecameInvisible()
     {
-        Vector3 screenCoords = camera.WorldToScreenPoint(new Vector3(transform.position.x, -transform.position.y - 1.0f, 1.0f));
-        GUI.Label(new Rect(screenCoords.x, screenCoords.y, 100, 20), currentHP + " / " + MAX_HP);
+        if (!isDead)
+            return;
+
+        Destroy(gameObject);
     }
 }
