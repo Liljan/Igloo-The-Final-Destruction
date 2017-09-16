@@ -19,8 +19,6 @@ public class Bullet : MonoBehaviour
     {
         float angle = transform.rotation.eulerAngles.z * Mathf.Deg2Rad;
         rb2d.velocity = new Vector2(speed * Mathf.Cos(angle), speed * Mathf.Sin(angle));
-
-        Debug.Log("Created");
     }
 
     public void SetSpeed(float s)
@@ -50,7 +48,6 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
             Destroy(this.gameObject);
         }
-
     }
 
     private void OnBecameInvisible()
