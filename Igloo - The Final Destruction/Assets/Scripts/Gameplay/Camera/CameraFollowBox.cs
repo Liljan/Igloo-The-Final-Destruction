@@ -7,7 +7,7 @@ public class CameraFollowBox : MonoBehaviour
     public Vector2 margin;
     public Vector2 smoothness;
     //public Vector2 maxXY;        // The maximum x and y coordinates the camera can have.
-    //public Vector2 minXY;        // The minimum x and y coordinates the camera can have.
+    public Vector2 min;        // The minimum x and y coordinates the camera can have.
     public Vector2 offset;
 
     // public Vector2 offset;
@@ -23,6 +23,9 @@ public class CameraFollowBox : MonoBehaviour
     void Update()
     {
         if (!player)
+            return;
+
+        if (transform.position.x <= min.x || transform.position.y <= min.y)
             return;
 
         Vector2 target = new Vector2(transform.position.x, transform.position.y);
