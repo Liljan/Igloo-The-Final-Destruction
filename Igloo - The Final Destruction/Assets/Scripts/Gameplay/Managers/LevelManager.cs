@@ -50,7 +50,7 @@ public class LevelManager : MonoBehaviour
 
     public void SetWin()
     {
-
+        Debug.Log("Orn");
     }
 
     public void SetLose()
