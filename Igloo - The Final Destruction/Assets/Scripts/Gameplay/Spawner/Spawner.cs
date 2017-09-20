@@ -18,6 +18,6 @@ public class Spawner : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Invisible");
+
     }
 }

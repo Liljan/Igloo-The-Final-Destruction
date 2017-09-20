@@ -12,7 +12,7 @@ public class CameraFollowBox : MonoBehaviour
 
     // public Vector2 offset;
 
-    public Transform player;        // Reference to the player's transform.
+    private Transform player;        // Reference to the player's transform.
 
     private void Awake()
     {
