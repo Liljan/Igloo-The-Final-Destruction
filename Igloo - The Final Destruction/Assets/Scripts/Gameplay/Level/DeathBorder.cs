@@ -6,7 +6,6 @@ public class DeathBorder : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Orn");
         if (collision.CompareTag("Player"))
         {
             PlayerHealth ii = collision.gameObject.GetComponent<PlayerHealth>();

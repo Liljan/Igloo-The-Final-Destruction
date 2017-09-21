@@ -22,6 +22,12 @@ public class PlayerHealth : Health
         }
     }
 
+    public void AddHealth(int health)
+    {
+        currentHP += health;
+        currentHP = Mathf.Clamp(currentHP, 0, MAX_HP);
+    }
+
     public override void Kill()
     {
         Instantiate(DeathParticles, transform.position, Quaternion.identity);

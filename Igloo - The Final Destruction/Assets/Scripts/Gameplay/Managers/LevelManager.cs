@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     private GameObject player;
 
     public int lives;
+    private int tokens;
 
     public Transform startpoint;
     private Transform currentCheckpoint;
@@ -20,6 +21,8 @@ public class LevelManager : MonoBehaviour
     {
         SetCheckpoint(startpoint);
         SpawnPlayer();
+
+        tokens = 0;
     }
 
     private void SpawnPlayer()
@@ -45,6 +48,12 @@ public class LevelManager : MonoBehaviour
     public void AddLife()
     {
         lives++;
+    }
+
+    public void AddToken(int value)
+    {
+        tokens += value;
+        Debug.Log(tokens + " Tokens");
     }
 
 
