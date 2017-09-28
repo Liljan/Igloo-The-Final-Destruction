@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    private PauseManager playerManager;
+
     public CameraFollowBox camera;
 
     public GameObject PlayerPrefab;
@@ -15,6 +17,12 @@ public class LevelManager : MonoBehaviour
 
     public Transform startpoint;
     private Transform currentCheckpoint;
+
+    private void Awake()
+    {
+        playerManager = GetComponent<PauseManager>();
+        playerManager.SetPaused(false);
+    }
 
     // Use this for initialization
     void Start()

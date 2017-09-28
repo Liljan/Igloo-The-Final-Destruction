@@ -77,6 +77,9 @@ public abstract class RangedWeapon : MonoBehaviour
 
     public void Update()
     {
+        if (Time.timeScale == 0F)
+            return;
+
         if (isReloading)
         {
             currentReloadTime += Time.deltaTime;

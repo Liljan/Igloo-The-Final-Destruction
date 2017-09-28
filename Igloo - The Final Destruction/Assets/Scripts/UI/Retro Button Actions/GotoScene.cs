@@ -8,6 +8,7 @@ public class GotoScene : SelectAction
 
     public override void Select()
     {
-        SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
+        Debug.Log(scene);
+        //SceneManager.SetActiveScene(SceneManager.GetSceneByName(scene));
     }
 }

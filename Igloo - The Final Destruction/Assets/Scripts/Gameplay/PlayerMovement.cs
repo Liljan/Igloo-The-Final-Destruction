@@ -22,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     private bool isGrounded;
 
-
     public void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -39,6 +38,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0F)
+            return;
+
         Movement();
         Jump();
     }
@@ -77,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("Grounded", isGrounded);
 
-        if(Input.GetButtonDown("Jump") && currentJumps < MAX_JUMPS)
+        if (Input.GetButtonDown("Jump") && currentJumps < MAX_JUMPS)
         {
             currentJumps++;
         }
