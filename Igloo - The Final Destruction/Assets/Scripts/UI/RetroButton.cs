@@ -6,14 +6,17 @@ public class RetroButton : MonoBehaviour
     private Text TEXT_OBJECT;
     private string originalText;
 
+    private SelectAction selectAction;
+
     private bool isSelected;
 
     private void Awake()
     {
         TEXT_OBJECT = GetComponent<Text>();
-
         originalText = TEXT_OBJECT.text;
         isSelected = false;
+
+        selectAction = GetComponent<SelectAction>();
     }
 
     public void SetSelected(bool b)
@@ -24,11 +27,15 @@ public class RetroButton : MonoBehaviour
             TEXT_OBJECT.text = '<' + originalText + '>';
         else
             TEXT_OBJECT.text = originalText;
-
     }
 
     private void OnDisable()
     {
         TEXT_OBJECT.text = originalText;
+    }
+
+    public void Select()
+    {
+        selectAction.Select();
     }
 }

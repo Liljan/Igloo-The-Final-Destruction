@@ -49,21 +49,7 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Pause"))
         {
-            isPaused = !isPaused;
-
-            PAUSE_MENU.SetActive(isPaused);
-
-            if (isPaused)
-            {
-                Time.timeScale = 0F;
-
-                btnIdx = 0;
-                BUTTONS[btnIdx].SetSelected(true);
-            }
-            else
-            {
-                Time.timeScale = 1F;
-            }
+            SetPaused(!isPaused);
         }
 
         if (!isPaused)
@@ -75,5 +61,29 @@ public class PauseManager : MonoBehaviour
             ScrollRight();
         if (xAxis < 0.0f)
             ScrollLeft();
+
+        if(Input.GetButtonDown("Jump"))
+        {
+            BUTTONS[btnIdx].Select();
+        }
+    }
+
+    public void SetPaused(bool b)
+    {
+        isPaused = b;
+
+        PAUSE_MENU.SetActive(isPaused);
+
+        if (isPaused)
+        {
+            Time.timeScale = 0F;
+
+            btnIdx = 0;
+            BUTTONS[btnIdx].SetSelected(true);
+        }
+        else
+        {
+            Time.timeScale = 1F;
+        }
     }
 }
