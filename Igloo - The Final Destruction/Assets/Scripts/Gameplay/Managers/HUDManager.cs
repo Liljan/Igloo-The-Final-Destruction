@@ -8,6 +8,18 @@ public class HUDManager : MonoBehaviour
     public Text TEXT_TOKENS;
     public Text TEXT_AMMO;
 
+    private static HUDManager instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    public static HUDManager Instance()
+    {
+        return instance;
+    }
+
     public void SetLives(int i)
     {
         string msg = Mathf.Abs(i) > 9 ? i + "" : "0" + i;
