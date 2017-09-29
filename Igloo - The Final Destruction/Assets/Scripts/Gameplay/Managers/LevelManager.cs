@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
 
     public int lives;
     private int tokens;
+    public int tokensPerLife;
 
     public Transform startpoint;
     private Transform currentCheckpoint;
@@ -82,6 +83,13 @@ public class LevelManager : MonoBehaviour
     public void AddToken(int value)
     {
         tokens += value;
+
+        if(tokens >= tokensPerLife)
+        {
+            AddLife();
+            tokens -= tokensPerLife;
+        }
+
         HUDManager.Instance().SetTokens(tokens);
     }
 
