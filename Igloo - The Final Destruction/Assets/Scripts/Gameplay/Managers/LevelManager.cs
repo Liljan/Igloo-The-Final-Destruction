@@ -20,6 +20,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+
         instance = this;
     }
 
@@ -35,8 +36,10 @@ public class LevelManager : MonoBehaviour
 
         SetCheckpoint(startpoint);
         SpawnPlayer();
+        HUDManager.Instance().SetLives(lives);
 
         tokens = 0;
+        HUDManager.Instance().SetTokens(tokens);
     }
 
     private void SpawnPlayer()
@@ -78,7 +81,7 @@ public class LevelManager : MonoBehaviour
     public void AddToken(int value)
     {
         tokens += value;
-        Debug.Log(tokens + " Tokens");
+        HUDManager.Instance().SetTokens(tokens);
     }
 
     public void SetWin()
