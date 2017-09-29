@@ -15,13 +15,7 @@ public abstract class Health : MonoBehaviour
         HandleCollisions(collision);
     }
 
-    public void TakeDamage(int damage)
-    {
-        currentHP -= damage;
-
-        if (currentHP <= 0)
-            Kill();
-    }
+    public abstract void TakeDamage(int damage);
 
     public abstract void Kill();
 

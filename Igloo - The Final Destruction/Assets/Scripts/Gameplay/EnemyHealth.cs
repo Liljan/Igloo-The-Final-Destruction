@@ -44,6 +44,14 @@ public class EnemyHealth : Health
         animator.SetBool("Dead", true);
     }
 
+    public override void TakeDamage(int damage)
+    {
+        currentHP -= damage;
+
+        if (currentHP <= 0)
+            Kill();
+    }
+
     /*private void OnBecameInvisible()
     {
         if (!isDead)
