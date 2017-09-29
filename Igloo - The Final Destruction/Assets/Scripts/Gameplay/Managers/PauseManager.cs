@@ -71,7 +71,7 @@ public class PauseManager : MonoBehaviour
         if (xAxis < 0.0f)
             ScrollLeft();
 
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             BUTTONS[btnIdx].Select();
         }
@@ -86,6 +86,8 @@ public class PauseManager : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0F;
+            MusicManager.Instance().PAUSE_MUSIC.Play();
+            MusicManager.Instance().LEVEL_MUSIC.Pause();
 
             btnIdx = 0;
             BUTTONS[btnIdx].SetSelected(true);
@@ -93,6 +95,8 @@ public class PauseManager : MonoBehaviour
         else
         {
             Time.timeScale = 1F;
+            MusicManager.Instance().PAUSE_MUSIC.Stop();
+            MusicManager.Instance().LEVEL_MUSIC.Play();
         }
     }
 }

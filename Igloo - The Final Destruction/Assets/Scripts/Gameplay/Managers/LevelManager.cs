@@ -20,7 +20,6 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-
         instance = this;
     }
 
@@ -40,6 +39,8 @@ public class LevelManager : MonoBehaviour
 
         tokens = 0;
         HUDManager.Instance().SetTokens(tokens);
+
+        MusicManager.Instance().LEVEL_MUSIC.Play();
     }
 
     private void SpawnPlayer()
