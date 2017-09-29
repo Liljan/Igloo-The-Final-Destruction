@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour {
 
-    private LevelManager levelManager;
     private bool isTriggered = false;
 
     private Animator animator;
 
     private void Awake()
     {
-        levelManager = GameObject.FindObjectOfType<LevelManager>();
         animator = GetComponent<Animator>();
     }
 
@@ -22,7 +20,7 @@ public class Checkpoint : MonoBehaviour {
 
         if(collision.CompareTag("Player"))
         {
-            levelManager.SetCheckpoint(transform);
+            LevelManager.Instance().SetCheckpoint(transform);
             isTriggered = true;
 
             animator.SetTrigger("Trigger");
