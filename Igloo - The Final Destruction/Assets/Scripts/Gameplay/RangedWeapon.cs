@@ -134,6 +134,8 @@ public abstract class RangedWeapon : MonoBehaviour
             ammoInClip = ammo;
             ammo = 0;
         }
+
+        HUDManager.Instance().SetAmmo(ammoInClip, clipSize);
     }
 
     protected void SpawnShot()

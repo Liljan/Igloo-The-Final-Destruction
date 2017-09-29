@@ -30,6 +30,7 @@ public class MachineGun : RangedWeapon
             ammoInClip--;
 
             currentFireTime = 0.0f;
+            HUDManager.Instance().SetAmmo(ammoInClip, clipSize);
         }
     }
 

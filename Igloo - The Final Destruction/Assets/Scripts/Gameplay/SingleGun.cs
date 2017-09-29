@@ -19,6 +19,8 @@ public class SingleGun : RangedWeapon
         {
             SpawnShot();
             ammoInClip--;
+
+            HUDManager.Instance().SetAmmo(ammoInClip, clipSize);
         }
     }
 }
