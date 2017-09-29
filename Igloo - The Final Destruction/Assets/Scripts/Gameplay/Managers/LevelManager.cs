@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    //private HUDManager HUD_MANAGER;
-    private PauseManager PAUSE_MANAGER;
-
     public CameraFollowBox camera;
 
     public GameObject PlayerPrefab;
@@ -19,22 +16,23 @@ public class LevelManager : MonoBehaviour
     public Transform startpoint;
     private Transform currentCheckpoint;
 
+    public static LevelManager instance;
+
     private void Awake()
     {
-        //HUD_MANAGER = GameObject.FindObjectOfType<HUDManager>();
-
-        PAUSE_MANAGER = GetComponent<PauseManager>();
-        PAUSE_MANAGER.SetPaused(false);
+        instance = this;
     }
 
-    public void Update()
+    public static LevelManager Instance()
     {
-
+        return instance;
     }
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
+        PauseManager.Instance().SetPaused(false);
+
         SetCheckpoint(startpoint);
         SpawnPlayer();
 
@@ -52,13 +50,16 @@ public class LevelManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        if (lives <= 0)
+        {
+            Debug.Log("Game Över!");
+            return;
+        }
+
         SpawnPlayer();
         lives--;
 
         HUDManager.Instance().SetLives(lives);
-
-        //if (lives >= 0)
-        //HUD_MANAGER.SetLives(lives);
     }
 
     public void SetCheckpoint(Transform t)
@@ -72,7 +73,6 @@ public class LevelManager : MonoBehaviour
 
         if (lives >= 0)
             HUDManager.Instance().SetLives(lives);
-        //HUD_MANAGER.SetLives(lives);
     }
 
     public void AddToken(int value)
@@ -80,7 +80,6 @@ public class LevelManager : MonoBehaviour
         tokens += value;
         Debug.Log(tokens + " Tokens");
     }
-
 
     public void SetWin()
     {

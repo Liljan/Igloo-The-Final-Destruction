@@ -10,12 +10,21 @@ public class PauseManager : MonoBehaviour
 
     private AxisAsButton horizontal;
 
+    private static PauseManager instance;
+
     public void Awake()
     {
         PAUSE_MENU.SetActive(false);
         isPaused = false;
 
         horizontal = AxisAsButton.CreateAxisAsButton("Horizontal");
+
+        instance = this;
+    }
+
+    public static PauseManager Instance()
+    {
+        return instance;
     }
 
     private void OnUnPaused()

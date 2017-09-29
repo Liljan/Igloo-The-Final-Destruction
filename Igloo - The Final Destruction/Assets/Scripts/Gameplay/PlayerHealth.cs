@@ -35,6 +35,8 @@ public class PlayerHealth : Health
     public override void Kill()
     {
         Instantiate(DeathParticles, transform.position, Quaternion.identity);
+        LevelManager.Instance().RespawnPlayer();
+
         Destroy(this.gameObject);
     }
 

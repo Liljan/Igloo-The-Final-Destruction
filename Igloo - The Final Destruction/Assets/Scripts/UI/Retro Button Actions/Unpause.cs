@@ -1,12 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Unpause : SelectAction
 {
-    public PauseManager pauseManager;
-
     public override void Select()
     {
-        pauseManager.SetPaused(false);
+        PauseManager.Instance().SetPaused(false);
     }
 }
