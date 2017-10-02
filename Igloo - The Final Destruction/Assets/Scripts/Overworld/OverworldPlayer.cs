@@ -35,8 +35,6 @@ public class OverworldPlayer : MonoBehaviour
             float x = Input.GetAxis("Horizontal");
             float y = Input.GetAxis("Vertical");
 
-            Debug.Log(x);
-
             // Horizontal Movement
             if (x < -0.1F && currentNode.LEFT)
                 target += gridDistance * Vector3.left;

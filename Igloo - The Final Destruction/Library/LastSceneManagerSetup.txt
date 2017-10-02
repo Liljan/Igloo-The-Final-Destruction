@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Development scene.unity
+- path: Assets/Scenes/Overworld_Development.unity
   isLoaded: 1
   isActive: 1
