@@ -42,9 +42,9 @@ public class OverworldPlayer : MonoBehaviour
                 target += gridDistance * Vector3.right;
 
             // Vertical movement
-            if (y == 1F && currentNode.UP)
+            else if (y > 0.1F && currentNode.UP)
                 target += gridDistance * Vector3.up;
-            else if (y == -1F && currentNode.DOWN)
+            else if (y < -0.1F && currentNode.DOWN)
                 target += gridDistance * Vector3.down;
         }
     }
