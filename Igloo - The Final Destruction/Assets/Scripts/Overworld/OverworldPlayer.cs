@@ -5,7 +5,7 @@ using UnityEngine;
 public class OverworldPlayer : MonoBehaviour
 {
     public float speed;
-    public float gridDistance = 1F;
+    //public float gridDistance = 1F;
 
     public GameObject startNode;
     private Node currentNode = null;
@@ -36,16 +36,16 @@ public class OverworldPlayer : MonoBehaviour
             float y = Input.GetAxis("Vertical");
 
             // Horizontal Movement
-            if (x < -0.1F && currentNode.LEFT)
-                target += gridDistance * Vector3.left;
-            else if (x > 0.1F && currentNode.RIGHT)
-                target += gridDistance * Vector3.right;
+            if (x < -0.1F && currentNode.LEFT && !currentNode.lockLeft)
+                target = currentNode.LEFT.transform.position;
+            else if (x > 0.1F && currentNode.RIGHT && !currentNode.lockRight)
+                target = currentNode.RIGHT.transform.position;
 
             // Vertical movement
-            else if (y > 0.1F && currentNode.UP)
-                target += gridDistance * Vector3.up;
-            else if (y < -0.1F && currentNode.DOWN)
-                target += gridDistance * Vector3.down;
+            else if (y > 0.1F && currentNode.UP && !currentNode.lockUp)
+                target = currentNode.UP.transform.position;
+            else if (y < -0.1F && currentNode.DOWN && !currentNode.lockDown)
+                target = currentNode.DOWN.transform.position;
         }
     }
 
