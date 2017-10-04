@@ -2,9 +2,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    public string levelKey;
+
     public CameraFollowBox camera;
 
     public GameObject PlayerPrefab;
@@ -67,6 +70,11 @@ public class LevelManager : MonoBehaviour
         HUDManager.Instance().SetLives(lives);
     }
 
+    public string GetLevelKey()
+    {
+        return levelKey;
+    }
+
     public void SetCheckpoint(Transform t)
     {
         currentCheckpoint = t;
@@ -95,11 +103,12 @@ public class LevelManager : MonoBehaviour
 
     public void SetWin()
     {
-        Debug.Log("Orn");
+        PlayerPrefs.SetInt(levelKey, LockStatus.UNLOCKED);
+        SceneManager.LoadScene("Overworld_Development");
     }
 
     public void SetLose()
     {
-
+        SceneManager.LoadScene(levelKey);
     }
 }

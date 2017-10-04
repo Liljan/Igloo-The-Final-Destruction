@@ -19,7 +19,21 @@ public class OverworldPlayer : MonoBehaviour
         //horizontal = AxisAsButton.CreateAxisAsButton("Horizontal");
         //vertical = AxisAsButton.CreateAxisAsButton("Vertical");
 
-        target = startNode.transform.position;
+        DetermineStartPosition();
+    }
+
+    public void DetermineStartPosition()
+    {
+        if (GameData.USE_DEFAULT_START_POS)
+        {
+            transform.position = startNode.transform.position;
+            target = transform.position;
+        }
+        else
+        {
+            transform.position = GameData.START_POSITION;
+            target = transform.position;
+        }
     }
 
     public void Update()
