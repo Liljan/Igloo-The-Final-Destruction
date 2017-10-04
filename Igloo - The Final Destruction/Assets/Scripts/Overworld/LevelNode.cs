@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class LevelNode : MonoBehaviour
 {
-
     public string levelKey;
 
     public GameObject HUD;
@@ -12,6 +11,14 @@ public class LevelNode : MonoBehaviour
     private void Awake()
     {
         HUD.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(Input.GetButtonDown("Jump"))
+        {
+            Debug.Log("Load level 1");
+        }
     }
 
 
