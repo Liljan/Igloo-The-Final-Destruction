@@ -49,12 +49,8 @@ public class OverworldPlayer : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void SetNode(Node n)
     {
-        if (!collision.CompareTag("OverworldNode"))
-            return;
-
-        currentNode = collision.GetComponent<Node>();
+        currentNode = n;
     }
-
 }

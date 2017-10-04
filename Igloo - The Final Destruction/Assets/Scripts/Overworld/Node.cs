@@ -44,4 +44,13 @@ public class Node : MonoBehaviour
         lockUp = lockDown = lockLeft = lockRight = false;
         lockObject.SetActive(false);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!collision.CompareTag("OverworldPlayer"))
+            return;
+
+        OverworldPlayer player = collision.GetComponent<OverworldPlayer>();
+        player.SetNode(this);
+    }
 }
