@@ -8,5 +8,9 @@ public class PlayerPrefabTest : MonoBehaviour
     {
         PlayerPrefs.SetInt("lvl_1_1", LockStatus.LOCKED);
         PlayerPrefs.SetInt("lvl_1_2", LockStatus.LOCKED);
+
+        PlayerPrefs.SetInt("lives", 4);
+        PlayerPrefs.SetInt("tokens", 0);
+        PlayerPrefs.Save();
     }
 }

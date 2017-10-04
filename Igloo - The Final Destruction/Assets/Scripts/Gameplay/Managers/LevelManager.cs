@@ -39,12 +39,25 @@ public class LevelManager : MonoBehaviour
 
         SetCheckpoint(startpoint);
         SpawnPlayer();
-        HUDManager.Instance().SetLives(lives);
 
-        tokens = 0;
+        LoadData();
+
+        HUDManager.Instance().SetLives(lives);
         HUDManager.Instance().SetTokens(tokens);
 
         MusicManager.Instance().LEVEL_MUSIC.Play();
+    }
+
+    private void LoadData()
+    {
+        lives = PlayerPrefs.GetInt("lives");
+        tokens = PlayerPrefs.GetInt("tokens");
+    }
+
+    private void SaveData()
+    {
+        PlayerPrefs.SetInt("lives", lives);
+        PlayerPrefs.SetInt("tokens", tokens);
     }
 
     private void SpawnPlayer()
@@ -70,11 +83,6 @@ public class LevelManager : MonoBehaviour
         HUDManager.Instance().SetLives(lives);
     }
 
-    public string GetLevelKey()
-    {
-        return levelKey;
-    }
-
     public void SetCheckpoint(Transform t)
     {
         currentCheckpoint = t;
@@ -92,7 +100,7 @@ public class LevelManager : MonoBehaviour
     {
         tokens += value;
 
-        if(tokens >= tokensPerLife)
+        if (tokens >= tokensPerLife)
         {
             AddLife();
             tokens -= tokensPerLife;
@@ -103,7 +111,8 @@ public class LevelManager : MonoBehaviour
 
     public void SetWin()
     {
-        PlayerPrefs.SetInt(levelKey, LockStatus.UNLOCKED);
+        SaveData();
+        PlayerPrefs.SetInt(levelKey, LockStatus.CLEARED);
         SceneManager.LoadScene("Overworld_Development");
     }
 

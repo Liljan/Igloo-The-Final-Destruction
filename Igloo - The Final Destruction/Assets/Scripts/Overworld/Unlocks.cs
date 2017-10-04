@@ -1,5 +1,5 @@
 ﻿public static class LockStatus
 {
     public const int LOCKED = 0;
-    public const int UNLOCKED = 1;
+    public const int CLEARED = 1;
 }
